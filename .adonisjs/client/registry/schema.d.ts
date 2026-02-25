@@ -18,6 +18,28 @@ export interface Registry {
       response: unknown
     }
   }
+  'news.index': {
+    methods: ["GET","HEAD"]
+    pattern: '/news'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['index']>>>
+    }
+  }
+  'news.show': {
+    methods: ["GET","HEAD"]
+    pattern: '/news/post/:slug'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { slug: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['show']>>>
+    }
+  }
   'new_account.create': {
     methods: ["GET","HEAD"]
     pattern: '/signup'
@@ -71,6 +93,83 @@ export interface Registry {
       params: {}
       query: {}
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/session_controller').default['destroy']>>>
+    }
+  }
+  'news.dashboard': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/news'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['dashboard']>>>
+    }
+  }
+  'news.create': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/news/create'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['create']>>>
+    }
+  }
+  'news.store': {
+    methods: ["POST"]
+    pattern: '/dashboard/news'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['store']>>>
+    }
+  }
+  'news.edit': {
+    methods: ["GET","HEAD"]
+    pattern: '/dashboard/news/:id/edit'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['edit']>>>
+    }
+  }
+  'news.update': {
+    methods: ["PUT"]
+    pattern: '/dashboard/news/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['update']>>>
+    }
+  }
+  'news.destroy': {
+    methods: ["DELETE"]
+    pattern: '/dashboard/news/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['destroy']>>>
+    }
+  }
+  'news.status': {
+    methods: ["PATCH"]
+    pattern: '/dashboard/news/:id/status'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/news_controller').default['toggleStatus']>>>
     }
   }
 }

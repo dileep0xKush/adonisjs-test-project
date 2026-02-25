@@ -1,70 +1,247 @@
-import { Form } from '@adonisjs/inertia/react'
+import { Form, Link } from '@adonisjs/inertia/react'
 
 export default function Signup() {
   return (
-    <div className="form-container">
-      <div>
-        <h1> Signup </h1>
-        <p>Enter your details below to create your account</p>
+    <div className="min-h-[85vh] flex items-center justify-center relative px-4">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center">
+        <div className="w-[800px] h-[800px] rounded-full bg-indigo-900/10 blur-[120px]" />
       </div>
 
-      <div>
+      <div className="w-full max-w-md bg-white/[0.02] border border-white/5 backdrop-blur-3xl rounded-3xl p-8 sm:p-10 shadow-2xl relative z-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <div className="w-16 h-16 mx-auto bg-gradient-to-br from-indigo-500/20 to-blue-500/20 border border-indigo-500/30 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/10">
+            <svg
+              className="w-8 h-8 text-indigo-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+              />
+            </svg>
+          </div>
+          <h1 className="text-3xl font-bold text-white tracking-tight mb-3">Create Account</h1>
+          <p className="text-slate-400 text-sm">Enter your details below to create your account</p>
+        </div>
+
+        {/* Form */}
         <Form route="new_account.store">
-          {({ errors }) => (
-            <>
-              <div>
-                <label htmlFor="fullName">Full name</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  id="fullName"
-                  data-invalid={errors.fullName ? 'true' : undefined}
-                />
-                {errors.fullName && <div>{errors.fullName}</div>}
+          {({ errors, processing }: any) => (
+            <div className="space-y-5">
+              {/* Full Name */}
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-slate-300" htmlFor="fullName">
+                  Full Name
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg
+                      className="h-5 w-5 text-slate-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    name="fullName"
+                    id="fullName"
+                    placeholder="John Doe"
+                    className={`w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/50 border ${
+                      errors.fullName
+                        ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                        : 'border-white/10 focus:border-indigo-500 focus:ring-indigo-500/20'
+                    } text-white placeholder-slate-500 focus:outline-none focus:ring-4 transition-all duration-300`}
+                  />
+                </div>
+                {errors.fullName && (
+                  <p className="text-rose-400 text-xs mt-1 absolute">{errors.fullName}</p>
+                )}
               </div>
 
-              <div>
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  autoComplete="email"
-                  data-invalid={errors.email ? 'true' : undefined}
-                />
-                {errors.email && <div>{errors.email}</div>}
+              {/* Email */}
+              <div className="space-y-2 pt-1">
+                <label className="block text-sm font-medium text-slate-300" htmlFor="email">
+                  Email
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg
+                      className="h-5 w-5 text-slate-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    className={`w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/50 border ${
+                      errors.email
+                        ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                        : 'border-white/10 focus:border-indigo-500 focus:ring-indigo-500/20'
+                    } text-white placeholder-slate-500 focus:outline-none focus:ring-4 transition-all duration-300`}
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-rose-400 text-xs mt-1 absolute">{errors.email}</p>
+                )}
               </div>
 
-              <div>
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  autoComplete="new-password"
-                  data-invalid={errors.password ? 'true' : undefined}
-                />
-                {errors.password && <div>{errors.password}</div>}
+              {/* Password */}
+              <div className="space-y-2 pt-1">
+                <label className="block text-sm font-medium text-slate-300" htmlFor="password">
+                  Password
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg
+                      className="h-5 w-5 text-slate-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    autoComplete="new-password"
+                    placeholder="••••••••"
+                    className={`w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/50 border ${
+                      errors.password
+                        ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                        : 'border-white/10 focus:border-indigo-500 focus:ring-indigo-500/20'
+                    } text-white placeholder-slate-500 focus:outline-none focus:ring-4 transition-all duration-300`}
+                  />
+                </div>
+                {errors.password && (
+                  <p className="text-rose-400 text-xs mt-1 absolute">{errors.password}</p>
+                )}
               </div>
 
-              <div>
-                <label htmlFor="passwordConfirmation">Confirm password</label>
-                <input
-                  type="password"
-                  name="passwordConfirmation"
-                  id="passwordConfirmation"
-                  autoComplete="new-password"
-                  data-invalid={errors.passwordConfirmation ? 'true' : undefined}
-                />
-                {errors.passwordConfirmation && <div>{errors.passwordConfirmation}</div>}
+              {/* Confirm Password */}
+              <div className="space-y-2 pt-1">
+                <label
+                  className="block text-sm font-medium text-slate-300"
+                  htmlFor="passwordConfirmation"
+                >
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg
+                      className="h-5 w-5 text-slate-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="password"
+                    name="passwordConfirmation"
+                    id="passwordConfirmation"
+                    autoComplete="new-password"
+                    placeholder="••••••••"
+                    className={`w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900/50 border ${
+                      errors.passwordConfirmation
+                        ? 'border-red-500/50 focus:border-red-500 focus:ring-red-500/20'
+                        : 'border-white/10 focus:border-indigo-500 focus:ring-indigo-500/20'
+                    } text-white placeholder-slate-500 focus:outline-none focus:ring-4 transition-all duration-300`}
+                  />
+                </div>
+                {errors.passwordConfirmation && (
+                  <p className="text-rose-400 text-xs mt-1 absolute">
+                    {errors.passwordConfirmation}
+                  </p>
+                )}
               </div>
 
-              <div>
-                <button type="submit" className="button">
-                  Sign up
+              {/* Submit */}
+              <div className="pt-8">
+                <button
+                  type="submit"
+                  disabled={processing}
+                  className="w-full py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-400 hover:to-blue-500 text-white font-medium shadow-lg shadow-indigo-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:-translate-y-0.5"
+                >
+                  {processing ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Creating Account...
+                    </span>
+                  ) : (
+                    'Create Account'
+                  )}
                 </button>
               </div>
-            </>
+
+              <div className="text-center pt-2">
+                <p className="text-slate-400 text-sm">
+                  Already have an account?{' '}
+                  <Link
+                    href="/login"
+                    className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                  >
+                    Sign in
+                  </Link>
+                </p>
+              </div>
+            </div>
           )}
         </Form>
       </div>
